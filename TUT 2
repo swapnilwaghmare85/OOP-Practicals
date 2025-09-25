@@ -1,0 +1,99 @@
+#include <iostream> 
+#include <string> 
+using namespace std; 
+class Employee { 
+string name; 
+int employeeID; 
+string dept; 
+string doj; 
+string address; 
+string tele_number; 
+static int employeeCount; 
+public: 
+void accept(); 
+void display(); 
+Employee(); 
+Employee(string nn, int ID, string dept1, string doj1, string contactAddress, string phoneNumber); 
+Employee(Employee &emp); 
+~Employee(); 
+inline void title(); 
+static int getEmployeeCount(); 
+}; 
+int Employee::employeeCount = 0; 
+Employee::Employee() { 
+name = "Swapnil"; 
+employeeID = 1085; 
+dept = "HR"; 
+doj = "2020-06-15"; 
+address = "MMCOE College"; 
+tele_number = "9876543210"; 
+employeeCount++; 
+}
+Employee::Employee(string nn, int ID, string dept1, string doj1, string contactAddress, string phoneNumber) { name = nn; 
+employeeID = ID; 
+dept = dept1; 
+doj = doj1; 
+address = contactAddress; 
+tele_number = phoneNumber; 
+employeeCount++; 
+} 
+Employee::Employee(Employee &emp) { 
+name = emp.name; 
+employeeID = emp.employeeID; 
+dept = emp.dept; 
+doj = emp.doj; 
+address = emp.address; 
+tele_number = emp.tele_number; 
+employeeCount++; 
+} 
+Employee::~Employee() { 
+cout << "\nDestructor called for employee: " << name; 
+} 
+inline void Employee::title() { 
+cout << "\n\t------Employee Management System--------"; 
+} 
+int Employee::getEmployeeCount() { 
+return employeeCount; 
+} 
+void Employee::accept() { 
+cout << "\nEnter name: "; 
+cin >> name; 
+cout << "\nEnter employee ID: "; 
+cin >> employeeID; 
+cout << "\nEnter department: "; 
+cin >> dept; 
+cout << "\nEnter date of joining: "; 
+cin >> doj; 
+cout << "\nEnter address: "; 
+cin >> address; 
+cout << "\nEnter telephone number: "; 
+cin >> tele_number; 
+} 
+void Employee::display() { 
+cout << "\nName: " << name; 
+cout << "\nEmployee ID: " << employeeID; 
+cout << "\nDepartment: " << dept; 
+cout << "\nDate of Joining: " << doj; 
+cout << "\nAddress: " << address; 
+cout << "\nTelephone number: " << tele_number; 
+} 
+int main() { 
+Employee emp1; 
+emp1.title(); 
+cout << "\n [Default Constructor Used]";
+emp1.display(); 
+cout << "\n\n"; 
+Employee emp2("Ashish", 1234567, "Sales", "05-07-2025", "kothrud", "4567891234"); cout << "\n [Parameterized Constructor Used]"; 
+emp2.display(); 
+cout << "\n\n"; 
+Employee emp3 = emp2; 
+cout << "\n [Copy Constructor Used]"; 
+emp3.display(); 
+cout << "\n\n"; 
+Employee *ptr1 = new Employee("Parth", 12345, "Engineering", "2023-01-15", "Karvenagar", "555-1234"); cout << "\n [Parameterized Constructor Used (Dynamic Allocation)]"; 
+ptr1->display(); 
+cout << "\n\n"; 
+delete ptr1; 
+cout << "Total employees: " << Employee::getEmployeeCount() << "\n"; 
+return 0; 
+} 
