@@ -1,0 +1,53 @@
+ #include <iostream> 
+ using namespace std; 
+ class ComplexNum { 
+ float realPart, imagPart; 
+ public: 
+ ComplexNum(){ 
+ realPart=0; 
+ imagPart=0; 
+ } 
+ ComplexNum(float a,float b){ 
+ realPart=a; 
+ imagPart=b; 
+ } 
+ ComplexNum operator +(ComplexNum); 
+ friend ComplexNum operator *(ComplexNum n1, ComplexNum n2); 
+ friend istream& operator >>(istream& ,ComplexNum&); 
+ friend ostream& operator <<(ostream& ,const ComplexNum&); 
+ }; 
+ ComplexNum ComplexNum::operator +(ComplexNum obj){ 
+ ComplexNum temp; 
+ temp.realPart=realPart + obj.realPart; 
+ temp.imagPart=imagPart + obj.imagPart; 
+ return temp; 
+ } 
+ ComplexNum operator *(ComplexNum n1, ComplexNum n2){ 
+ ComplexNum temp; 
+ temp.realPart=n1.realPart*n2.realPart - n1.imagPart*n2.imagPart; 
+ temp.imagPart=n1.realPart*n2.imagPart + n1.imagPart*n2.realPart; 
+ return temp; 
+ } 
+ istream &operator >>(istream &in, ComplexNum &obj){ 
+ cout<<"Enter realPart: "; 
+ in>>obj.realPart; 
+ cout<<"Enter imagPart: "; 
+ in>>obj.imagPart; 
+ return in; 
+ } 
+ostream &operator <<(ostream &out,const ComplexNum &obj){ 
+out<<obj.realPart<<" + "<<obj.imagPart<<"i"; 
+return out; 
+} 
+int main(){ 
+ComplexNum n1,n2,n3; 
+cin>>n1; 
+cin>>n2; 
+cout<<"First Complex Number: "<<n1<<endl; 
+cout<<"Second Complex Number: "<<n2<<endl; 
+n3=n1+n2; 
+cout<<"Addition : "<<n3<<endl; 
+n3=n1*n2; 
+cout<<"Multiplication : "<<n3<<endl; 
+return 0; 
+}
