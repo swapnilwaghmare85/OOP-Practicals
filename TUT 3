@@ -1,0 +1,95 @@
+#include<iostream> 
+using namespace std; 
+class StaffMember{ 
+protected: 
+string fullname,department; 
+int empID; 
+public: 
+void getInput1(); 
+void showOutput1(); 
+}; 
+class Faculty:public StaffMember{ 
+string course; 
+int expYears; 
+public: 
+void getInput2(); 
+void showOutput2(); 
+}; 
+class Helper:public StaffMember{ 
+string role; 
+int yrs; 
+public: 
+void getInput3(); 
+void showOutput3(); 
+}; 
+void StaffMember::getInput1(){ 
+cout<<"Enter staff full name: "; 
+cin>>fullname; 
+cout<<"Enter department name: "; 
+cin>>department; 
+cout<<"Enter employee ID: "; 
+cin>>empID; 
+} 
+void Faculty::getInput2(){ 
+cout<<"\n**** Enter Faculty Details ****\n"; 
+getInput1(); 
+ cout<<"Enter course name: "; 
+ cin>>course; 
+ cout<<"Enter teaching years: "; 
+ cin>>expYears; 
+ } 
+ void Helper::getInput3(){ 
+ cout<<"\n**** Enter Helper Details ****\n"; 
+ getInput1(); 
+ cout<<"Enter role: "; 
+ cin>>role; 
+ cout<<"Enter years of service: "; 
+ cin>>yrs; 
+ } 
+ void StaffMember::showOutput1(){ 
+ cout<<"Name: "<<fullname<<endl; 
+ cout<<"Department: "<<department<<endl; 
+ cout<<"ID: "<<empID<<endl; 
+ } 
+ void Faculty::showOutput2(){ 
+ cout<<"\n======================================\n"; 
+ cout<<"          FACULTY DETAILS"; 
+ cout<<"\n======================================\n"; 
+ showOutput1(); 
+ cout<<"Course: "<<course<<endl; 
+ cout<<"Experience: "<<expYears<<" years"<<endl; 
+ } 
+ void Helper::showOutput3(){ 
+ cout<<"\n======================================\n"; 
+ cout<<"       HELPER DETAILS\n"; 
+ cout<<"======================================\n"; 
+ showOutput1(); 
+ cout<<"Role: "<<role<<endl; 
+ cout<<"Experience: "<<yrs<<" years"<<endl; 
+ } 
+ int main(){ 
+ int x=0,y=0; 
+ cout<<"Enter number of Faculty: "; 
+ cin>>x; 
+ cout<<"Enter number of Helpers: "; 
+ cin>>y; 
+ Faculty f[x]; 
+ Helper h[y]; 
+ for(int i=0;i<x;i++){ 
+ cout<<"\n**** Faculty #"<<i+1<<" ****\n"; 
+ f[i].getInput2(); 
+ } 
+ for(int i=0;i<x;i++){ 
+ cout<<"\n**** Faculty #"<<i+1<<" ****\n"; 
+ f[i].showOutput2(); 
+ } 
+ for(int i=0;i<y;i++){ 
+ cout<<"\n**** Helper #"<<i+1<<" ****\n"; 
+ h[i].getInput3(); 
+ } 
+ for(int i=0;i<y;i++){ 
+ cout<<"\n**** Helper #"<<i+1<<" ****\n"; 
+ h[i].showOutput3(); 
+ } 
+ return 0; 
+ } 
