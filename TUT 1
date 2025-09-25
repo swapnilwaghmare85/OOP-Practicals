@@ -1,0 +1,88 @@
+#include<iostream>
+#include<string>
+using namespace std;
+class Account {
+    string customerName;
+    string accountType;
+    int accountNumber;
+    float balance;
+public:
+    Account(string name, string type, int number, float initialBalance) {
+        customerName=name;
+        accountType=type;
+        accountNumber=number;
+        balance=initialBalance;
+                   }
+    void withdraw();
+    void deposit();
+    void display();
+    float getBalance() {
+        return balance;
+    }
+                };
+void Account::withdraw() {
+    float amount;
+    cout<<"\nEnter Withdraw Amount: ";
+    cin>>amount;
+    if (amount > balance) {
+        cout<< "Insufficient Balance!";
+    } else{
+        balance -= amount;
+        cout<<"Withdrawal Successful.";
+        cout<< "\nUpdated Balance: " << balance; }
+  }
+void Account::deposit() {
+    float amount;
+    cout<<"\nEnter Deposit Amount: ";
+    cin>>amount;
+    balance+= amount;
+    cout << "Deposit Successful.";
+    cout << "\nUpdated Balance: " << balance;
+              }
+void Account::display() {
+    cout <<"\nAccount Information:";
+    cout << "\nName: "<<customerName;
+    cout << "\nAccount Type: "<<accountType;
+    cout<< "\nAccount Number: "<< accountNumber;
+    cout<< "\nBalance: "<< balance;
+     }
+int main() {
+           string name, accType;
+     int accNum;
+    float initialBalance;
+    int choice;
+    char cont;
+    cout << "Enter Name: ";
+    cin>> name;
+    cout<< "Enter Account Type: ";
+    cin>> accType;
+    cout <<"Enter Account Number: ";
+    cin >> accNum;
+    cout << "Enter Balance: ";
+    cin >>initialBalance;
+    Account acc(name, accType, accNum, initialBalance);
+    do {
+        cout<< "\n\nSelect Option:";
+        cout <<"\n1. Withdraw";
+        cout<<"\n2. Deposit";
+        cout<< "\n3. Display Account Information";
+        cout<< "\nEnter your choice (1/2/3): ";
+        cin >> choice;
+        switch (choice) {
+                       case 1:
+                acc.withdraw();
+                break;
+               case 2:
+                acc.deposit();
+                break;
+                   case 3:
+                acc.display();
+                break;
+             default:
+                cout << "\nInvalid choice!";
+                                                   }
+        cout << "\n\nDo you want to continue? (Y/N): ";
+        cin >> cont;
+    } while (cont == 'Y' || cont == 'y');
+    return 0;
+           }
