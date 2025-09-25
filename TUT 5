@@ -1,0 +1,46 @@
+ #include<iostream> 
+ using namespace std; 
+ class Figure{ 
+ float len; 
+ float wid; 
+ float ht; 
+ public: 
+ void accept(){ 
+ cout<<"Enter len: "; 
+ cin>>len; 
+ cout<<"Enter wid: "; 
+ cin>>wid; 
+ cout<<"Enter ht: "; 
+ cin>>ht; 
+ } 
+ float getLen(){ return len; } 
+ float getWid(){ return wid; } 
+ float getHt(){ return ht; } 
+ virtual void show()=0; 
+ }; 
+ class Tri: public Figure{ 
+ public: 
+ void show(){ 
+ cout<<"Area calculated (Triangle): "<<0.5*getLen()*getHt()<<endl; 
+ } 
+ }; 
+ class Rect: public Figure{ 
+ public: 
+ void show(){ 
+ cout<<"Area calculated (Rectangle): "<<getLen()*getWid()<<endl; 
+ } 
+ }; 
+ int main(){ 
+ Figure *p1, *p2; 
+ Tri t1; 
+ Rect r1; 
+ p1=&t1; 
+cout<<"--- Triangle Info ---"<<endl; 
+p1->accept(); 
+p1->show(); 
+p2=&r1; 
+cout<<"--- Rectangle Info ---"<<endl; 
+p2->accept(); 
+p2->show(); 
+return 0; 
+} 
