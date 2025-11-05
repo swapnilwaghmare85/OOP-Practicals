@@ -1,0 +1,49 @@
+#include <iostream>
+#include <map>
+#include <string>
+using namespace std;
+
+int main() {
+    typedef map<int, string> StudentMap;
+    StudentMap records;
+    int prn, n;
+    string studentName;
+
+    cout << "Enter total number of students: ";
+    cin >> n;
+
+    for (int i = 0; i < n; i++) {
+        cout << "Enter student PRN: ";
+        cin >> prn;
+        cout << "Enter student name: ";
+        cin >> studentName;
+        records.insert(pair<int, string>(prn, studentName));
+    }
+
+    cout << "\n---------- Student Record List ----------\n";
+    cout << "Total students: " << records.size() << "\n";
+
+    for (auto it = records.begin(); it != records.end(); ++it) {
+        cout << it->first << " : " << it->second << "\n";
+    }
+
+    cout << "\nEnter a PRN to search: ";
+    cin >> prn;
+
+    auto it = records.find(prn);
+    if (it != records.end()) {
+        cout << "\nPRN " << prn << " is assigned to " << it->second << ".\n";
+    } else {
+        cout << "No record found for entered PRN.\n";
+    }
+
+    cout << "\nWould you like to delete all records? (1 = Yes): ";
+    cin >> n;
+
+    if (n == 1) {
+        records.clear();
+        cout << "All student records have been deleted.\n";
+    }
+
+    return 0;
+}
