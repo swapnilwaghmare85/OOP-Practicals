@@ -1,0 +1,26 @@
+#include<iostream>
+using namespace std;
+double x, y;
+void getData(){
+	cout << "Enter the dividend: ";
+	cin >> x;
+	cout << "Enter the divisor: ";
+	cin >> y;
+}
+void performDivide(){
+	try{
+		if(y == 0){
+			throw(y);
+		}
+	}
+	catch(double y){
+		cout << "Error! Divisor can't be zero.";
+		return;
+	}
+	cout << "Result (Quotient): " << x / y;
+}
+int main(){
+	getData();
+	performDivide();
+	return 0;
+}
