@@ -1,0 +1,54 @@
+#include<iostream>
+#include<fstream>
+using namespace std;
+
+class store {
+    char itemName[25];
+    char itemCode[10];
+    float cost;
+    int quantity;
+public:
+    void input() {
+        cout << "Enter item name: ";
+        cin >> itemName;
+        cout << "Enter item code: ";
+        cin >> itemCode;
+        cout << "Enter item price: ";
+        cin >> cost;
+        cout << "Enter available stock: ";
+        cin >> quantity;
+    }
+    void show() {
+        cout << "\nItem Name: " << itemName << endl;
+        cout << "Item Code: " << itemCode << endl;
+        cout << "Item Price: " << cost << endl;
+        cout << "Item Stock: " << quantity << endl;
+    }
+};
+
+int main() {
+    ofstream outFile;
+    store s1[5], s2[5];
+    int num;
+
+    cout << "How many items do you want to record? ";
+    cin >> num;
+
+    outFile.open("Items.txt", ios::binary | ios::out);
+    for (int i = 0; i < num; i++) {
+        s1[i].input();
+        outFile.write((char*)&s1[i], sizeof(s1[i]));
+    }
+    outFile.close();
+
+    ifstream inFile;
+    inFile.open("Items.txt", ios::binary | ios::in);
+    for (int i = 0; i < num; i++) {
+        inFile.read((char*)&s2[i], sizeof(s2[i]));
+        s2[i].show();
+    }
+    inFile.close();
+
+    cout << "\nRecords successfully saved and read.\n";
+    return 0;
+}
